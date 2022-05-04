@@ -8,9 +8,10 @@ class UsersController < ApplicationController
     def create
         @user = User.new(username:params[:user][:username])
         @user.password = params[:user][:password]
+        @user.email = params[:user][:email]
         if @user.save
             session[:user_id] = @user.id
-            link_to @sessions.new
+            redirect_to "login_path"
         else
             render :new
         end

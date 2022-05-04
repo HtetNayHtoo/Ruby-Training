@@ -1,7 +1,5 @@
 <h1>Articles</h1>
 
-<%= column_chart User.group_by_week(:created_at, time_zone: "America/Sao_Paulo").count %>
-
 <canvas id="myChart" style="width:200px;height:200px"></canvas>
 
 <script>
