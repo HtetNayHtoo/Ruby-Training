@@ -1,0 +1,46 @@
+<h1>Articles</h1>
+
+<%= column_chart User.group_by_week(:created_at, time_zone: "America/Sao_Paulo").count %>
+
+<canvas id="myChart" style="width:200px;height:200px"></canvas>
+
+<script>
+  var xValues = ["January", "February", "March", "April", "May","June","July","August","September","October","November","December"];
+  var yValues = [<%=@arrays["01"]%>,<%=@arrays["02"]%>,<%=@arrays["03"]%>, <%=@arrays["04"]%>, <%=@arrays["05"]%>, <%=@arrays["06"]%>,
+                <%=@arrays["07"]%>,<%=@arrays["08"]%>, <%=@arrays["09"]%>, <%=@arrays["10"]%>, <%=@arrays["11"]%>, <%=@arrays["12"]%>];
+  var barColors = ["red", "green","blue","orange","brown"];
+
+  new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+    options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "User creation chart"
+    }
+  }
+});
+
+</script>
+
+
+
+Our blog has <%= Article.public_count %> articles and counting!
+<ul>
+  <% @articles.each do |article| %>
+    <!--<% unless article.archived? %>-->
+      <li>
+        <%= link_to article.title, article %>
+      </li>
+    <!--<% end %>-->
+  <% end %>
+</ul>
+
+<% link_to "New Article" , new_article_path %>
