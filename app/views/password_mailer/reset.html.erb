@@ -6,4 +6,4 @@ If this is you, click the link!
 
 Link will expire in 15mins!
 
-<%= link_to "Reset password", password_reset_edit_url%>
+<%= link_to "Reset password", password_reset_edit_url(token: @token)%>

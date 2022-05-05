@@ -10,10 +10,12 @@ class ArticlesController < ApplicationController
         FROM blog.users
         GROUP BY MONTH(`created_at`)";
       @arrays = ActiveRecord::Base.connection.execute(@sql).to_h;
+        # @article = ArticlesService.indexArticle(@article)
     end
 
     def show
-        @article = Article.find(params[:id])
+        # @article = Article.find(params[:id])
+        @article = ArticlesService.getArticleById(params[:id])
     end
 
     def new
@@ -22,8 +24,9 @@ class ArticlesController < ApplicationController
 
     def create
         @article = Article.new(article_params)
-
-        if @article.save
+        
+        @create_article = ArticlesService.createArticle(@article)
+        if @create_article
             redirect_to @article
         else
             render :new
@@ -31,13 +34,14 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+        # @article = Article.find(params[:id])
+        @article = ArticlesService.getArticleById(params[:id])
     end
 
     def update
-        @article = Article.find(params[:id])
-
-        if @article.update(article_params)
+        @article = ArticlesService.getArticleById(params[:id])
+        @update_article = ArticlesService.updateArticle(@article, article_params)
+        if @update_article
             redirect_to @article
         else
             render :edit
@@ -45,8 +49,8 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
-        @article.destroy
+        @article = ArticlesService.getArticleById(params[:id])
+        @destory_article = ArticlesService.destroyArticle(@article)
 
         redirect_to root_path
     end
