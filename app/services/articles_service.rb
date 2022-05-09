@@ -20,8 +20,8 @@ class ArticlesService
             @destory_article = ArticlesRepository.destroyArticle(article)
         end
 
-        def indexArticle(article)
-            @article = ArticlesRepository.indexArticle(article)
-        end
+        # def indexArticle(article)
+        #     @article = ArticlesRepository.indexArticle(article)
+        # end
     end
 end

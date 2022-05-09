@@ -1,7 +1,7 @@
 <h1>Login</h1>
 <%= form_tag (sessions_path) do%>
 <%= text_field_tag :username%><br/><br/>
-<%= text_field_tag :password%><%= link_to "Forgot your password?", password_reset_path %><br/><br/>
+<%= password_field_tag :password%><%= link_to "Forgot your password?", password_reset_path %><br/><br/>
 <%= link_to "Dont Have an account?Create One!", users_path %><br/>
 <br/>
 <%= submit_tag "login"%>

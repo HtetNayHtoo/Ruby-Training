@@ -15,12 +15,14 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/session', to: 'sessions#create', as: 'sessions'
-  delete '/sessions', to: 'sessions#destroy'
+  delete '/logout', to: 'sessions#destroy'
 
   get "password/reset", to: "password_resets#new"
   post "password/reset", to: "password_resets#create"
   get "password/reset/edit", to: "password_resets#edit"
   patch "password/reset/edit", to: "password_resets#update"
+  
+  get "/createarticle", to: "articles#new"
 
   resources :home
 

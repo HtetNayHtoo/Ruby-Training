@@ -1,21 +1,21 @@
 class UsersController < ApplicationController
     # skip_before_action :require_login, only:[:new, :create]
     
-    def new
+    def index
         @user = User.new
     end
 
     def create
-        @user = User.new(username:params[:user][:username])
-        @user.password = params[:user][:password]
-        @user.email = params[:user][:email]
-        @create_user = UsersService.createUser(@user)
-        if @create_user
-            session[:user_id] = @user.id
-            redirect_to login_path
-        else
-            render :new
-        end
+            @user = User.new(username:params[:user][:username])
+            @user.password = params[:user][:password]
+            @user.email = params[:user][:email]
+            @create_user = UsersService.createUser(@user)
+            if @create_user
+                session[:user_id] = @user.id
+                redirect_to login_path
+            else
+                render :index
+            end
     end
 
     # def create

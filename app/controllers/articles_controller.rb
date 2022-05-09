@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
         @article = ArticlesService.getArticleById(params[:id])
         @destory_article = ArticlesService.destroyArticle(@article)
 
-        redirect_to root_path
+        redirect_to articles_path
     end
 
 
